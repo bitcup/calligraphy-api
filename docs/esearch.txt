@@ -1,0 +1,18 @@
+cluster: callig
+node: n0
+index: lawha - 5 primary shards, 1 replica (defaults)
+types: mokhtar, kamel, wall
+
+
+
+configs: see
+http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html
+http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service.html
+
+commands:
+1.  create lawha index:
+        curl -XPUT 'localhost:9200/lawha?pretty'
+        curl 'localhost:9200/_cat/indices?v'
+
+2.  query wall lawha with id=1
+        curl -XGET 'localhost:9200/lawha/wall/1?pretty'
