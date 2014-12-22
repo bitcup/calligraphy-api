@@ -12,5 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LawhaRepository extends ElasticsearchCrudRepository<Lawha, String> {
 
-    Page<Lawha> findByTagsContaining(String tag, Pageable page);
+    Page<Lawha> findByTypeAndTagsContaining(String type, String tag, Pageable page);
+
+    Page<Lawha> findByType(String type, Pageable page);
 }

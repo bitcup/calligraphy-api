@@ -25,14 +25,14 @@ public class LawhaController {
         return lawhaRepository.findOne(id);
     }
 
-    @RequestMapping("/lawhats")
-    public Page<Lawha> getLatest(Pageable pageable) {
-        return lawhaRepository.findAll(pageable);
+    @RequestMapping("/lawhats/type/{type}")
+    public Page<Lawha> getByType(@PathVariable("type") String type, Pageable pageable) {
+        return lawhaRepository.findByType(type, pageable);
     }
 
-    @RequestMapping("/lawhats/tag/{tag}")
-    public Page<Lawha> getByTag(@PathVariable("tag") String tag, Pageable pageable) {
-        return lawhaRepository.findByTagsContaining(tag, pageable);
+    @RequestMapping("/lawhats/type/{type}/tag/{tag}")
+    public Page<Lawha> getByTypeAndTag(@PathVariable("type") String type, @PathVariable("tag") String tag, Pageable pageable) {
+        return lawhaRepository.findByTypeAndTagsContaining(type, tag, pageable);
     }
 
     @RequestMapping(value = "/lawhats", method = RequestMethod.POST)

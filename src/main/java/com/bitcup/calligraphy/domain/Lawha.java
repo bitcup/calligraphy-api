@@ -18,12 +18,17 @@ import java.util.Date;
  */
 @EqualsAndHashCode
 @ToString
-@Document(indexName = "lawha", type = "wall", refreshInterval = "-1")
+@Document(indexName = "lawha", refreshInterval = "-1")
 public class Lawha implements Serializable {
     @Getter
     @Setter
     @Id
     private String id;
+
+    @Getter
+    @Setter
+    @Field(type = FieldType.String)
+    private Type type;
 
     @Getter
     @Setter
@@ -38,12 +43,32 @@ public class Lawha implements Serializable {
     @Getter
     @Setter
     @Field(type = FieldType.String)
+    private String artist;
+
+    @Getter
+    @Setter
+    @Field(type = FieldType.String)
+    private String artistAr;
+
+    @Getter
+    @Setter
+    @Field(type = FieldType.Long)
+    private long likes;
+
+    @Getter
+    @Setter
+    @Field(type = FieldType.String)
     private String imgSrc;
 
     @Getter
     @Setter
     @Field(type = FieldType.Date)
     private Date dateAdded;
+
+    @Getter
+    @Setter
+    @Field(type = FieldType.String)
+    private String website;
 
     @Getter
     @Setter
