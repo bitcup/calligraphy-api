@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
+ * todo: add buy flag(s)?
+ *
  * @author bitcup
  */
 @EqualsAndHashCode
@@ -68,7 +70,7 @@ public class Lawha implements Serializable {
     @Getter
     @Setter
     @Field(type = FieldType.String)
-    private String website;
+    private String source;
 
     @Getter
     @Setter
