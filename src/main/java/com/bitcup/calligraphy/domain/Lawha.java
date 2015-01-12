@@ -54,11 +54,6 @@ public class Lawha implements Serializable {
 
     @Getter
     @Setter
-    @Field(type = FieldType.Long)
-    private long likes;
-
-    @Getter
-    @Setter
     @Field(type = FieldType.String)
     private String imgSrc;
 

@@ -27,21 +27,19 @@ public class AppInitializer implements WebApplicationInitializer {
         logger.info("enable annotation-driven mvc....");
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(MvcConfig.class);
-        rootContext.setDisplayName("angular-auth");
+        rootContext.setDisplayName("calligraphy-api");
 
         // creates spring container and add listener for injecting config into servlet context
         servletContext.addListener(new ContextLoaderListener(rootContext));
 
         logger.info("creating dispatcher servlet and mapping all requests to it....");
-        ServletRegistration.Dynamic dispatcher =
-                servletContext.addServlet("dispatcher", new DispatcherServlet(rootContext));
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(rootContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
 
         servletContext.addFilter("corsFilter", CorsFilter.class).addMappingForUrlPatterns(null, false, "/*");
 
-        FilterRegistration.Dynamic encodingFilter =
-                servletContext.addFilter("characterEncodingFilter", CharacterEncodingFilter.class);
+        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("characterEncodingFilter", CharacterEncodingFilter.class);
         encodingFilter.addMappingForUrlPatterns(null, false, "/*");
         encodingFilter.setInitParameter("encoding", "UTF-8");
         encodingFilter.setInitParameter("forceEncoding", "true");
