@@ -3,6 +3,7 @@ package com.bitcup.calligraphy.util;
 import com.bitcup.calligraphy.domain.Lawha;
 import com.bitcup.calligraphy.domain.Type;
 import com.bitcup.calligraphy.repository.LawhaRepository;
+import com.bitcup.calligraphy.spring.config.PropertyPlaceholderConfig;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.WordUtils;
 import org.elasticsearch.common.collect.Sets;
@@ -12,6 +13,8 @@ import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -32,6 +35,7 @@ import java.util.TreeSet;
  * @author bitcup
  */
 @Component
+@Import(PropertyPlaceholderConfig.class)
 public class AcDataParser {
 
     private static final Logger logger = LoggerFactory.getLogger(AcDataParser.class);
@@ -40,8 +44,11 @@ public class AcDataParser {
     @Autowired
     private LawhaRepository lawhaRepository;
 
+    @Value("${xml.filename}")
+    private String filename;
+
     public void parse() throws Exception {
-        File xml = new File("/Users/bitcup/Desktop/ac_dump.xml");
+        File xml = new File(filename);
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
